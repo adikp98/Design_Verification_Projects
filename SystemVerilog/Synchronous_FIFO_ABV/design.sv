@@ -43,7 +43,7 @@ module sync_fifo(clk,rst,rd_en,wr_en,full,empty,din,dout);
   
   //assertions
   assert property(@(posedge clk) (full && wr_en && !rd_en) |=> $stable(wr_ptr)) 
-    else $error("Write ptr remain set even there is a write operation on FIFO full");
+    else $error("Write ptr changed even though FIFO is full");
     
     assert property(@(posedge clk) (count > 15) |-> full);
     assert property(@(posedge clk) (count < 16) |-> !full);
