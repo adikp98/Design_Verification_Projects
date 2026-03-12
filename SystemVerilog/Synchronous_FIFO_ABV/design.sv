@@ -24,7 +24,7 @@ module sync_fifo(clk,rst,rd_en,wr_en,full,empty,din,dout);
     
     else if(wr_en && !full)begin
       	fifo[wr_ptr] <= din;
-      wr_ptr <= (wr_ptr+1)%depth;
+      wr_ptr <= (wr_ptr+1);
         count <= count + 1;
       end
   
@@ -32,7 +32,7 @@ module sync_fifo(clk,rst,rd_en,wr_en,full,empty,din,dout);
 
     else if(rd_en && !empty)begin
           dout <= fifo[rd_ptr];
-      rd_ptr <= (rd_ptr + 1)%depth;
+      rd_ptr <= (rd_ptr + 1);
           count <= count - 1;
         end
     end
